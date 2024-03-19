@@ -1,0 +1,8 @@
+1- Visualización de libros
+2- Creación de Lista de Lectura
+3- Filtrado de libros por género
+4- Sincronización de Estado
+5- Persistencia de datos
+6- Sincronización entre pestañas
+7- Despliegue
+8- Test
