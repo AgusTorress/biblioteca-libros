@@ -24,8 +24,8 @@ export const ListaLibros = ({
     useState(listaLibros);
   const [librosFiltradosPorInput, setLibrosFiltradosPorInput] =
     useState(listaLibros);
-  const [filtroTextoPorInput, setFiltroTextoPorInput] = useState(false);
-  const [filtroTextoPorValor, setFiltroTextoPorValor] = useState(false);
+  /* const [filtroTextoPorInput, setFiltroTextoPorInput] = useState(false);
+  const [filtroTextoPorValor, setFiltroTextoPorValor] = useState(false); */
   const firstBookRef = useRef<HTMLDivElement>(null);
 
   const scrollToFirstBook = () => {
@@ -53,20 +53,20 @@ export const ListaLibros = ({
     setLibrosFiltradosPorValor(
       listaLibros.filter((libro) => libro.pages >= min && libro.pages <= max)
     );
-    setFiltroTextoPorValor(true);
+    /* setFiltroTextoPorValor(true); */
   };
 
   const filterByTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (value === "") {
+  /*   if (value === "") {
       setFiltroTextoPorInput(false);
-    }
+    } */
     setLibrosFiltradosPorInput(
       listaLibros.filter((libro) =>
         libro.title.toLowerCase().includes(value.toLowerCase())
       )
     );
-    setFiltroTextoPorInput(true);
+    /* setFiltroTextoPorInput(true); */
   };
 
   const intersectionArrays = (arr1: book[], arr2: book[]) => {
