@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { book } from "../types/types";
 import { IoIosCloseCircle } from "react-icons/io";
 interface Props {
@@ -7,10 +8,27 @@ interface Props {
 
 export const Modal = ({ libro, hideModal }: Props) => {
   const librosAutor = libro.author.otherBooks;
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)){
+        hideModal();
+        console.log("ejecute")
+      }
+  }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [hideModal]);
+  
 
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-10 flex items-center justify-center animate-appearance-in">
-      <div className="relative flex items-center justify-between md:w-[700px] 2xl:w-[1000px] p-12 gap-12 bg-[#111]/40 shadow-xl">
+      <div className="relative flex items-center justify-between md:w-[700px] 2xl:w-[1000px] p-12 gap-12 bg-[#111]/40 shadow-xl" ref={modalRef}>
         <img
           src={libro.cover}
           alt="bookImg"
@@ -51,7 +69,7 @@ export const Modal = ({ libro, hideModal }: Props) => {
               <p className=" text-amber-400">Otros libros del autor:</p>
               <ul className="pl-2">
                 {librosAutor.map((libroAutor) => {
-                  return <li>{libroAutor}</li>;
+                  return <li key={libroAutor}>{libroAutor}</li>;
                 })}
               </ul>
             </div>

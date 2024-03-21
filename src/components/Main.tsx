@@ -51,6 +51,8 @@ export const Main = () => {
     setShowModal(true);
     setModalBook(libro);
     const contenido = document.querySelector("#content");
+    const titulo = document.querySelector("#title");
+    titulo?.classList.add("borroso");
     contenido?.classList.add("borroso");
   };
 
@@ -58,7 +60,9 @@ export const Main = () => {
     setShowModal(false);
     setModalBook(undefined);
     const contenido = document.querySelector("#content");
+    const titulo = document.querySelector("#title");
     contenido?.classList.remove("borroso");
+    titulo?.classList.remove("borroso");
   };
 
   return (
@@ -66,7 +70,7 @@ export const Main = () => {
       {showModal && modalBook && (
         <Modal hideModal={hideModal} libro={modalBook} />
       )}
-      <div className="font-bold text-5xl text-white">Biblioteca Riki-Riki</div>
+      <div className="font-bold text-5xl text-white" id="title">Biblioteca Riki-Riki</div>
       <div className="w-full grid grid-cols-2 grid-rows-1 gap-x-4" id="content">
         <ListaLibros
           librosFav={librosFavoritos}
